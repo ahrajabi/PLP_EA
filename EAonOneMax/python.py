@@ -9,8 +9,6 @@ def OneMaxFitness(point):
             cnt += 1
     return cnt
 
-print(OneMaxFitness([0,1,1,0,1]))
-
 def Mutation(point, prob):
     n = len(point)
     new_point = copy.copy(point)
@@ -18,9 +16,6 @@ def Mutation(point, prob):
         if random.random() < prob:
             new_point[item] = 1-new_point[item]
     return new_point
-
-print(Mutation([0,1,0,1], 1))
-
 
 def ea(n, iter_number):
     point = [random.choice([0,1]) for i in range(n)]
@@ -43,11 +38,11 @@ def benchmark(tries):
     for n in [100, 1000, 10000]:
         time_sum = 0
         for t in range(tries):
-            t1 = time.time()*1000
+            t1 = time.time()*1000000000
             ea(n, max_iter)
-            t2 = time.time()*1000
+            t2 = time.time()*1000000000
             time_sum += (t2-t1)
-        took = time_sum*0.1/tries
-        print "Python solves OneMax of size %d in %d ms."%(n, took)
+        took = time_sum*1.0/tries
+        print "Python solves OneMax of size %d in %d ns."%(n, took)
 
-benchmark(10)
+benchmark(100)

@@ -53,8 +53,8 @@ function benchmark(tries)
             time_sum += (t2-t1)
         end
         took = time_sum/tries
-        println("Julia solves OneMax of size $n in $took ms." )
+        println("Julia solves OneMax of size $n in $took ns." )
     end
 end
 
-benchmark(10)
+benchmark(100)
